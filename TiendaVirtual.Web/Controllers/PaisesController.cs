@@ -28,11 +28,7 @@ namespace TiendaVirtual.Web.Controllers
             var listaVm = new List<PaisListVm>();
             foreach (var item in lista)
             {
-                var paisVm = new PaisListVm()
-                {
-                    PaisId = item.PaisId,
-                    NombrePais = item.NombrePais
-                };
+                var paisVm = GetPaisListVm(item);
                 listaVm.Add(paisVm);
             }
             return listaVm;
@@ -72,6 +68,43 @@ namespace TiendaVirtual.Web.Controllers
                 PaisId = paisEditVm.PaisId,
                 NombrePais = paisEditVm.NombrePais
             };
+        }
+        private PaisListVm GetPaisListVm(Pais pais)
+        {
+            return new PaisListVm()
+            {
+                PaisId = pais.PaisId,
+                NombrePais = pais.NombrePais
+            };
+        }
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+            }
+            var pais = _servicio.GetPaisPorId(id.Value);
+            if (pais == null)
+            {
+                return HttpNotFound("Codigo de país inexistente");
+            }
+            var paisVm = GetPaisListVm(pais);
+            return View(paisVm);
+        }
+        [HttpPost,ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirm(int id)
+        {
+            var pais = _servicio.GetPaisPorId(id);
+            if (_servicio.EstaRelacionado(pais))
+            {
+                var paisVm = GetPaisListVm(pais);
+                ModelState.AddModelError(string.Empty, "País relacionado... Baja denegada");
+                return View(paisVm);
+            }
+            _servicio.Borrar(id);
+            TempData["Msg"] = "Registro borrado satisfactoriamente";
+            return RedirectToAction("Index");   
         }
     }
 }
