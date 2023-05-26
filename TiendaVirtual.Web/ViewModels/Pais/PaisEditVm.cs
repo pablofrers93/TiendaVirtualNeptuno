@@ -14,5 +14,7 @@ namespace TiendaVirtual.Web.ViewModels.Pais
         [Required(ErrorMessage = "El campo {0 }es requerido")]
         [StringLength(100, ErrorMessage = "El campo {0} debe contener entre {2} y {1} caracteres", MinimumLength = 3)]
         public string NombrePais { get; set; }
+
+        public byte[] RowVersion { get; set; }
     }
 }

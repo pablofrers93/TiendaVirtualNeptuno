@@ -206,6 +206,7 @@
     <Content Include="Views\Paises\Index.cshtml" />
     <Content Include="Views\Paises\Create.cshtml" />
     <Content Include="Views\Paises\Delete.cshtml" />
+    <Content Include="Views\Paises\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

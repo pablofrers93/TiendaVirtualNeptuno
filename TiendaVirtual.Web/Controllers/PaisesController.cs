@@ -66,7 +66,8 @@ namespace TiendaVirtual.Web.Controllers
             return new Pais()
             {
                 PaisId = paisEditVm.PaisId,
-                NombrePais = paisEditVm.NombrePais
+                NombrePais = paisEditVm.NombrePais,
+                RowVersion = paisEditVm.RowVersion
             };
         }
         private PaisListVm GetPaisListVm(Pais pais)
@@ -105,6 +106,47 @@ namespace TiendaVirtual.Web.Controllers
             _servicio.Borrar(id);
             TempData["Msg"] = "Registro borrado satisfactoriamente";
             return RedirectToAction("Index");   
+        }
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+            }
+            var pais = _servicio.GetPaisPorId(id.Value);
+            if (pais == null)
+            {
+                return HttpNotFound("Codigo de país inexistente");
+            }
+            var paisVm = GetPaisEditVmFromPais(pais);
+            return View(paisVm);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(PaisEditVm paisVm) 
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(paisVm);
+            }
+            var pais = GetPaisFromPaisEditVm(paisVm);
+            if (_servicio.Existe(pais))
+            {
+                ModelState.AddModelError(string.Empty, "Pais Existente");
+                return View(paisVm);
+            }
+            _servicio.Guardar(pais);
+            TempData["Msg"] = "Registro editado satisfactoriamente";
+            return RedirectToAction("Index");
+        }
+        private PaisEditVm GetPaisEditVmFromPais(Pais pais)
+        {
+            return new PaisEditVm()
+            {
+                PaisId = pais.PaisId,
+                NombrePais = pais.NombrePais,
+                RowVersion = pais.RowVersion
+            };
         }
     }
 }
