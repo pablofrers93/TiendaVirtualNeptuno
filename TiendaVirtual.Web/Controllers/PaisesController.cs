@@ -41,5 +41,37 @@ namespace TiendaVirtual.Web.Controllers
         {
             return View();
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(PaisEditVm paisVm)
+        {
+            if (ModelState.IsValid)
+            {
+                var pais = GetPaisFromPaisEditVm(paisVm);
+                if (_servicio.Existe(pais))
+                {
+                    ModelState.AddModelError(string.Empty, "País existente");
+                    return View(paisVm);
+                }
+                else
+                {
+                    _servicio.Guardar(pais);
+                    TempData["Msg"] = "Registro guardado satisfactoriamente";
+                    return RedirectToAction("Index");
+                } 
+            }
+            else
+            {
+                return View(paisVm);
+            }
+        }
+        private Pais GetPaisFromPaisEditVm(PaisEditVm paisEditVm)
+        {
+            return new Pais()
+            {
+                PaisId = paisEditVm.PaisId,
+                NombrePais = paisEditVm.NombrePais
+            };
+        }
     }
 }

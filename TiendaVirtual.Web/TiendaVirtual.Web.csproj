@@ -149,6 +149,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\Pais\PaisEditVm.cs" />
     <Compile Include="ViewModels\Pais\PaisListVm.cs" />
   </ItemGroup>
   <ItemGroup>
