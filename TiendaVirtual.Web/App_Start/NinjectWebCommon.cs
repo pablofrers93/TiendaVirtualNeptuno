@@ -69,6 +69,8 @@ namespace TiendaVirtual.Web.App_Start
             kernel.Bind<IRepositorioPaises>().To<RepositorioPaises>().InRequestScope();
             kernel.Bind<IServiciosPaises>().To<ServiciosPaises>().InRequestScope();
             kernel.Bind<IUnitOfWork>().To<UnitOfWork>().InRequestScope();
+            kernel.Bind<IRepositorioCategorias>().To<RepositorioCategorias>().InRequestScope();
+            kernel.Bind<IServiciosCategorias>().To<ServiciosCategorias>().InRequestScope();
         }
     }
 }

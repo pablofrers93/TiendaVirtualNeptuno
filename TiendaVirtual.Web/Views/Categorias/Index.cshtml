@@ -1,0 +1,41 @@
+﻿@model IEnumerable<TiendaVirtual.Web.ViewModels.Categoria.CategoriaListVm>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Lista de Categorías</h2>
+
+<p>
+    @Html.ActionLink("Nueva", "Create",null, new {@class="btn btn-primary"})
+</p>
+<table class="border-0 table table-bordered table-hover table-dark w-75">
+    <tr>
+        <th class="w-25">
+            @Html.DisplayNameFor(model => model.NombreCategoria)
+        </th>
+        <th class="w-60">
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </th>
+            
+        <th class="w-15">Acciones</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreCategoria)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.CategoriaId }, new {@class="btn btn-sm btn btn-warning" }) |
+                @Html.ActionLink("Detalles", "Details", new { id = item.CategoriaId }, new { @class = "btn btn-sm btn btn-info" })|
+                @Html.ActionLink("Borrar", "Delete", new { id = item.CategoriaId }, new { @class = "btn btn-sm btn btn-danger" })
+            </td>
+        </tr>
+    }
+
+</table>

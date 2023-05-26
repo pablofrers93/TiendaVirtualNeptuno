@@ -143,12 +143,14 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CategoriasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PaisesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\Categoria\CategoriaListVm.cs" />
     <Compile Include="ViewModels\Pais\PaisEditVm.cs" />
     <Compile Include="ViewModels\Pais\PaisListVm.cs" />
   </ItemGroup>
@@ -207,6 +209,7 @@
     <Content Include="Views\Paises\Create.cshtml" />
     <Content Include="Views\Paises\Delete.cshtml" />
     <Content Include="Views\Paises\Edit.cshtml" />
+    <Content Include="Views\Categorias\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
