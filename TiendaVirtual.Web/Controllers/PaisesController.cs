@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using TiendaVirtual.Entidades.Entidades;
 using TiendaVirtual.Servicios.Interfaces;
+using TiendaVirtual.Web.ViewModels.Pais;
 
 namespace TiendaVirtual.Web.Controllers
 {
@@ -18,9 +19,27 @@ namespace TiendaVirtual.Web.Controllers
         }
         public ActionResult Index()
         {
-            //var lista = _servicio.GetPaises();
-            var lista = new List<Pais>();
-            return View(lista);
+            var lista = _servicio.GetPaises();
+            var listaVm = GetListaPaisesListVm(lista);
+            return View(listaVm);
+        }
+        private List<PaisListVm> GetListaPaisesListVm(List<Pais> lista)
+        {
+            var listaVm = new List<PaisListVm>();
+            foreach (var item in lista)
+            {
+                var paisVm = new PaisListVm()
+                {
+                    PaisId = item.PaisId,
+                    NombrePais = item.NombrePais
+                };
+                listaVm.Add(paisVm);
+            }
+            return listaVm;
+        }
+        public ActionResult Create()
+        {
+            return View();
         }
     }
 }
