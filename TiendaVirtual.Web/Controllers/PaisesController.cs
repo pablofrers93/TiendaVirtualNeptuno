@@ -37,28 +37,52 @@ namespace TiendaVirtual.Web.Controllers
         {
             return View();
         }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Create(PaisEditVm paisVm)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        var pais = GetPaisFromPaisEditVm(paisVm);
+        //        if (_servicio.Existe(pais))
+        //        {
+        //            ModelState.AddModelError(string.Empty, "País existente");
+        //            return View(paisVm);
+        //        }
+        //        else
+        //        {
+        //            _servicio.Guardar(pais);
+        //            TempData["Msg"] = "Registro guardado satisfactoriamente";
+        //            return RedirectToAction("Index");
+        //        } 
+        //    }
+        //    else
+        //    {
+        //        return View(paisVm);
+        //    }
+        //}
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(PaisEditVm paisVm)
+        public ActionResult Create(string paisSeleccionado)
         {
             if (ModelState.IsValid)
             {
-                var pais = GetPaisFromPaisEditVm(paisVm);
+                var pais = new Pais();
+                pais.NombrePais = paisSeleccionado;
                 if (_servicio.Existe(pais))
                 {
                     ModelState.AddModelError(string.Empty, "País existente");
-                    return View(paisVm);
+                    return View();
                 }
                 else
                 {
                     _servicio.Guardar(pais);
                     TempData["Msg"] = "Registro guardado satisfactoriamente";
                     return RedirectToAction("Index");
-                } 
+                }
             }
             else
             {
-                return View(paisVm);
+                return View(paisSeleccionado);
             }
         }
         private Pais GetPaisFromPaisEditVm(PaisEditVm paisEditVm)
