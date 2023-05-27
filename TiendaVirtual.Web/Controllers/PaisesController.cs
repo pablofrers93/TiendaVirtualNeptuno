@@ -68,10 +68,18 @@ namespace TiendaVirtual.Web.Controllers
             {
                 var pais = new Pais();
                 pais.NombrePais = paisSeleccionado;
-                if (_servicio.Existe(pais))
+                if (_servicio.Existe(pais) || pais.NombrePais=="")
                 {
-                    ModelState.AddModelError(string.Empty, "País existente");
-                    return View();
+                    if (_servicio.Existe(pais))
+                    {
+                        ModelState.AddModelError(string.Empty, "País existente");
+                        return View(); 
+                    }
+                    else
+                    {
+                        ModelState.AddModelError(string.Empty, "Debe seleccionar un país");
+                        return View();
+                    }
                 }
                 else
                 {
