@@ -39,5 +39,22 @@ namespace TiendaVirtual.Web.Controllers
             }
             return listaVm;
         }
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(Ciudad ciudad)
+        {
+            if (_servicio.Existe(ciudad))
+            {
+                ModelState.AddModelError(string.Empty, "Ciudad existente");
+                return View();
+            }
+            _servicio.Guardar(ciudad);
+            return RedirectToAction("Index");
+        }
     }
 }

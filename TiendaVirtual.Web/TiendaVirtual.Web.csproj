@@ -217,6 +217,7 @@
     <Content Include="Views\Categorias\Delete.cshtml" />
     <Content Include="Views\Categorias\Edit.cshtml" />
     <Content Include="Views\Ciudades\Index.cshtml" />
+    <Content Include="Views\Ciudades\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
