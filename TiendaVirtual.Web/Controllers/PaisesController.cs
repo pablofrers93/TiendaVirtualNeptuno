@@ -1,10 +1,12 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using TiendaVirtual.Entidades.Entidades;
 using TiendaVirtual.Servicios.Interfaces;
+using TiendaVirtual.Web.App_Start;
 using TiendaVirtual.Web.ViewModels.Pais;
 
 namespace TiendaVirtual.Web.Controllers
@@ -13,26 +15,20 @@ namespace TiendaVirtual.Web.Controllers
     {
         // GET: Paises
         private readonly IServiciosPaises _servicio;
+        private readonly IMapper _mapper;
         public PaisesController(IServiciosPaises servicios)
         {
             _servicio = servicios;
+            _mapper = AutoMapperConfig.Mapper;
         }
         public ActionResult Index()
         {
             var lista = _servicio.GetPaises();
-            var listaVm = GetListaPaisesListVm(lista);
+            //var listaVm = GetListaPaisesListVm(lista);
+            var listaVm = _mapper.Map<List<PaisListVm>>(lista);
             return View(listaVm);
         }
-        private List<PaisListVm> GetListaPaisesListVm(List<Pais> lista)
-        {
-            var listaVm = new List<PaisListVm>();
-            foreach (var item in lista)
-            {
-                var paisVm = GetPaisListVm(item);
-                listaVm.Add(paisVm);
-            }
-            return listaVm;
-        }
+        
         public ActionResult Create()
         {
             return View();
@@ -43,7 +39,7 @@ namespace TiendaVirtual.Web.Controllers
         //{
         //    if (ModelState.IsValid)
         //    {
-        //        var pais = GetPaisFromPaisEditVm(paisVm);
+        //        var pais = _mapper.Map<Pais>(paisVm);
         //        if (_servicio.Existe(pais))
         //        {
         //            ModelState.AddModelError(string.Empty, "País existente");
@@ -90,23 +86,7 @@ namespace TiendaVirtual.Web.Controllers
                 return View(paisSeleccionado);
             }
         }
-        private Pais GetPaisFromPaisEditVm(PaisEditVm paisEditVm)
-        {
-            return new Pais()
-            {
-                PaisId = paisEditVm.PaisId,
-                NombrePais = paisEditVm.NombrePais,
-                RowVersion = paisEditVm.RowVersion
-            };
-        }
-        private PaisListVm GetPaisListVm(Pais pais)
-        {
-            return new PaisListVm()
-            {
-                PaisId = pais.PaisId,
-                NombrePais = pais.NombrePais
-            };
-        }
+        
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -118,7 +98,7 @@ namespace TiendaVirtual.Web.Controllers
             {
                 return HttpNotFound("Codigo de país inexistente");
             }
-            var paisVm = GetPaisListVm(pais);
+            var paisVm = _mapper.Map<PaisListVm>(pais);
             return View(paisVm);
         }
         [HttpPost,ActionName("Delete")]
@@ -128,7 +108,7 @@ namespace TiendaVirtual.Web.Controllers
             var pais = _servicio.GetPaisPorId(id);
             if (_servicio.EstaRelacionado(pais))
             {
-                var paisVm = GetPaisListVm(pais);
+                var paisVm = _mapper.Map<PaisListVm>(pais);
                 ModelState.AddModelError(string.Empty, "País relacionado... Baja denegada");
                 return View(paisVm);
             }
@@ -147,7 +127,7 @@ namespace TiendaVirtual.Web.Controllers
             {
                 return HttpNotFound("Codigo de país inexistente");
             }
-            var paisVm = GetPaisEditVmFromPais(pais);
+            var paisVm = _mapper.Map<PaisEditVm>(pais);
             return View(paisVm);
         }
         [HttpPost]
@@ -158,7 +138,7 @@ namespace TiendaVirtual.Web.Controllers
             {
                 return View(paisVm);
             }
-            var pais = GetPaisFromPaisEditVm(paisVm);
+            var pais = _mapper.Map<Pais>(paisVm);
             if (_servicio.Existe(pais))
             {
                 ModelState.AddModelError(string.Empty, "Pais Existente");
@@ -168,14 +148,42 @@ namespace TiendaVirtual.Web.Controllers
             TempData["Msg"] = "Registro editado satisfactoriamente";
             return RedirectToAction("Index");
         }
-        private PaisEditVm GetPaisEditVmFromPais(Pais pais)
-        {
-            return new PaisEditVm()
-            {
-                PaisId = pais.PaisId,
-                NombrePais = pais.NombrePais,
-                RowVersion = pais.RowVersion
-            };
-        }
+        //private PaisEditVm GetPaisEditVmFromPais(Pais pais)
+        //{
+        //    return new PaisEditVm()
+        //    {
+        //        PaisId = pais.PaisId,
+        //        NombrePais = pais.NombrePais,
+        //        RowVersion = pais.RowVersion
+        //    };
+        //}
+
+        //private Pais GetPaisFromPaisEditVm(PaisEditVm paisEditVm)
+        //{
+        //    return new Pais()
+        //    {
+        //        PaisId = paisEditVm.PaisId,
+        //        NombrePais = paisEditVm.NombrePais,
+        //        RowVersion = paisEditVm.RowVersion
+        //    };
+        //}
+        //private PaisListVm GetPaisListVm(Pais pais)
+        //{
+        //    return new PaisListVm()
+        //    {
+        //        PaisId = pais.PaisId,
+        //        NombrePais = pais.NombrePais
+        //    };
+        //}
+        //private List<PaisListVm> GetListaPaisesListVm(List<Pais> lista)
+        //{
+        //    var listaVm = new List<PaisListVm>();
+        //    foreach (var item in lista)
+        //    {
+        //        var paisVm = GetPaisListVm(item);
+        //        listaVm.Add(paisVm);
+        //    }
+        //    return listaVm;
+        //}
     }
 }

@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using TiendaVirtual.Web.App_Start;
 
 namespace TiendaVirtual.Web
 {
@@ -12,6 +13,7 @@ namespace TiendaVirtual.Web
     {
         protected void Application_Start()
         {
+            AutoMapperConfig.Inicialize();
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

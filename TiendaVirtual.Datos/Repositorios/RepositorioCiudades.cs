@@ -64,23 +64,6 @@ namespace Neptuno2022EF.Datos.Repositorios
         {
             try
             {
-                //if (ciudad.Pais != null)
-                //{
-                //    ciudad.Pais = null;
-
-                //}
-                var ciudadInDb = GetCiudadPorId(ciudad.CiudadId);
-
-                if (ciudadInDb == null)
-                {
-                    throw new Exception("Registro dado de baja por otro usuario");
-                }
-                //ciudadInDb.Pais = null;
-                //ciudadInDb.NombreCiudad = ciudad.NombreCiudad;
-                //ciudadInDb.PaisId = ciudad.PaisId;
-
-
-                //_context.Entry(ciudadInDb).State = EntityState.Modified;
                 _context.Entry(ciudad).State = EntityState.Modified;
             }
             catch (Exception ex)
