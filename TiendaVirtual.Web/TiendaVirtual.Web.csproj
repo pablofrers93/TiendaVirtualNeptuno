@@ -226,6 +226,7 @@
     <Content Include="Views\Ciudades\Create.cshtml" />
     <Content Include="Views\Ciudades\Delete.cshtml" />
     <Content Include="Views\Ciudades\Edit.cshtml" />
+    <Content Include="Views\Paises\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

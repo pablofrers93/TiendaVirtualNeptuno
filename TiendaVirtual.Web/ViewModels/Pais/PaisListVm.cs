@@ -12,5 +12,7 @@ namespace TiendaVirtual.Web.ViewModels.Pais
         [DisplayName("País")]
         public string NombrePais { get; set; }
         public byte[] RowVersion { get; set; }
+        [DisplayName("Cantidad de Ciudades")]
+        public int CantidadCiudades { get; set; }
     }
 }

@@ -13,6 +13,5 @@ namespace TiendaVirtual.Web.ViewModels.Ciudad
         public string NombreCiudad { get; set; }
         [DisplayName("País")]
         public string NombrePais { get; set; }
-       
     }
 }

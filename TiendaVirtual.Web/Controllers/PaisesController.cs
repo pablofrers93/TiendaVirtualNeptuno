@@ -15,17 +15,21 @@ namespace TiendaVirtual.Web.Controllers
     {
         // GET: Paises
         private readonly IServiciosPaises _servicio;
+        private readonly IServiciosCiudades _servicioCiudades;
         private readonly IMapper _mapper;
-        public PaisesController(IServiciosPaises servicios)
+        public PaisesController(IServiciosPaises servicios, IServiciosCiudades servicioCiudades)
         {
             _servicio = servicios;
             _mapper = AutoMapperConfig.Mapper;
+            _servicioCiudades = servicioCiudades;
         }
         public ActionResult Index()
         {
             var lista = _servicio.GetPaises();
             //var listaVm = GetListaPaisesListVm(lista);
             var listaVm = _mapper.Map<List<PaisListVm>>(lista);
+            listaVm.ForEach(p => p.CantidadCiudades = _servicioCiudades.GetCantidad(c => c.PaisId == p.PaisId));
+            
             return View(listaVm);
         }
         
@@ -147,6 +151,21 @@ namespace TiendaVirtual.Web.Controllers
             _servicio.Guardar(pais);
             TempData["Msg"] = "Registro editado satisfactoriamente";
             return RedirectToAction("Index");
+        }
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+            }
+            var pais = _servicio.GetPaisPorId(id.Value);
+            if (pais==null)
+            {
+                return HttpNotFound("Codigo de pais inexistente");
+            }
+            var paisVm = _mapper.Map<PaisListVm>(pais);
+            paisVm.CantidadCiudades = _servicioCiudades.GetCantidad(c => c.PaisId == paisVm.PaisId);
+            return View(paisVm);
         }
         //private PaisEditVm GetPaisEditVmFromPais(Pais pais)
         //{

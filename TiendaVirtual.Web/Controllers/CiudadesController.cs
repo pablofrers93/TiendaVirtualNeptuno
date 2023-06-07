@@ -138,7 +138,7 @@ namespace TiendaVirtual.Web.Controllers
             if (ciudad == null)
             {
                 return HttpNotFound("Codigo de ciudad inexistente");
-            }
+            }    
             var ciudadVm = _mapper.Map<CiudadEditVm>(ciudad);
             var listaPaises = _servicioPaises.GetPaises();
             ViewBag.DropDownPaises = new SelectList(listaPaises, "PaisId", "NombrePais");
@@ -152,19 +152,32 @@ namespace TiendaVirtual.Web.Controllers
             {
                 return View(ciudadVm);
             }
-            var ciudad = _mapper.Map<Ciudad>(ciudadVm);
-            var listaPaises = _servicioPaises.GetPaises();
-            ViewBag.DropDownPaises = new SelectList(listaPaises, "PaisId", "NombrePais");
-
-            if (_servicio.Existe(ciudad))
+            try
             {
-                ModelState.AddModelError(string.Empty, "Ciudad Existente");
+                var ciudad = _mapper.Map<Ciudad>(ciudadVm);
+                var listaPaises = _servicioPaises.GetPaises();
+                ViewBag.DropDownPaises = new SelectList(listaPaises, "PaisId", "NombrePais");
+
+                if (_servicio.Existe(ciudad))
+                {
+                    ModelState.AddModelError(string.Empty, "Ciudad Existente");
+                    return View(ciudadVm);
+                }
+                else
+                {
+                    _servicio.Guardar(ciudad);
+                    TempData["Msg"] = "Registro editado satisfactoriamente";
+                    return RedirectToAction("Index");
+                }             
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError(string.Empty, "No se pudo editar la ciudad");
                 return View(ciudadVm);
             }
-            _servicio.Guardar(ciudad);
-            TempData["Msg"] = "Registro editado satisfactoriamente";
-            return RedirectToAction("Index");
+            
         }
+
         //private List<CiudadListVm> GetCiudadesListVm(List<CiudadListDto>lista)
         //{
         //    var listaVm = new List<CiudadListVm>();

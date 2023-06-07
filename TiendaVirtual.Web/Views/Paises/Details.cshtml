@@ -1,0 +1,29 @@
+﻿@model TiendaVirtual.Web.ViewModels.Pais.PaisListVm
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Detalles del País</h2>
+
+<div>
+    <hr />
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.DisplayNameFor(model => model.NombrePais)
+                @Html.TextBoxFor(model => model.NombrePais, new {@class="form-control", @disabled = "disabled"})
+            </div>         
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.DisplayNameFor(model => model.CantidadCiudades)
+                @Html.TextBoxFor(model => model.CantidadCiudades, new { @class = "form-control", @disabled = "disabled" })
+            </div>
+        </div>
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }, new {@class= "btn btn-warning"}) |
+    @Html.ActionLink("Volver", "Index", null, new {@class = "btn btn-success"})
+</p>
