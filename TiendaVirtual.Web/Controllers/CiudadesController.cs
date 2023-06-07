@@ -104,15 +104,29 @@ namespace TiendaVirtual.Web.Controllers
         public ActionResult DeleteConfirm(int id)
         {
             var ciudad = _servicio.GetCiudadPorId(id);
-            if (_servicio.EstaRelacionada(ciudad))
+            var ciudadVm = _mapper.Map<CiudadListVm>(ciudad);   
+            try
             {
-                var ciudadVm = _mapper.Map<CiudadListVm>(ciudad);
-                ModelState.AddModelError(string.Empty, "Ciudad relacionada... Baja denegada");
-                return View(ciudadVm);
+                if (!_servicio.EstaRelacionada(ciudad))
+                {
+                    _servicio.Borrar(id);
+                    TempData["Msg"] = "Registro borrado satisfactoriamente";
+                    return RedirectToAction("Index");
+                }
+                else
+                { 
+                    ModelState.AddModelError(string.Empty, "Ciudad relacionada... Baja denegada");
+                    return View(ciudadVm);
+                }
             }
-            _servicio.Borrar(id);
-            TempData["Msg"] = "Registro borrado satisfactoriamente";
-            return RedirectToAction("Index");
+            catch (Exception ex) 
+            {
+                ModelState.AddModelError(string.Empty, "Error al intentar borrar un registro");
+                return View(ciudadVm);
+                
+            }
+            
+            
         }
         public ActionResult Edit(int? id)
         {
