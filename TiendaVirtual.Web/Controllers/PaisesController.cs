@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Neptuno2022EF.Servicios.Servicios;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +8,7 @@ using System.Web.Mvc;
 using TiendaVirtual.Entidades.Entidades;
 using TiendaVirtual.Servicios.Interfaces;
 using TiendaVirtual.Web.App_Start;
+using TiendaVirtual.Web.ViewModels.Ciudad;
 using TiendaVirtual.Web.ViewModels.Pais;
 
 namespace TiendaVirtual.Web.Controllers
@@ -165,7 +167,35 @@ namespace TiendaVirtual.Web.Controllers
             }
             var paisVm = _mapper.Map<PaisListVm>(pais);
             paisVm.CantidadCiudades = _servicioCiudades.GetCantidad(c => c.PaisId == paisVm.PaisId);
-            return View(paisVm);
+            var paisDetailVm = new PaisDetailVm()
+            {
+                Pais = paisVm,
+                Ciudades = _mapper.Map<List<CiudadListVm>>(_servicioCiudades.GetCiudades(pais.PaisId))
+            };
+            return View(paisDetailVm);
+        }
+
+        public ActionResult AddCity(int? paisId)
+        {
+            if (paisId == null)
+            {
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+            }
+            var pais = _servicio.GetPaisPorId(paisId.Value);
+            if (pais == null)
+            {
+                return HttpNotFound("Codigo de pais inexistente");
+            }
+            var listaPaises = _servicio.GetPaises();
+            var ciudadVm = new CiudadEditVm()
+            {
+                Paises = listaPaises.Select(p => new SelectListItem()
+                {
+                    Text = p.NombrePais,
+                    Value = p.PaisId.ToString()
+                }).ToList()
+            };
+            return View(ciudadVm); 
         }
         //private PaisEditVm GetPaisEditVmFromPais(Pais pais)
         //{

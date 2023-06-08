@@ -1,4 +1,4 @@
-﻿@model TiendaVirtual.Web.ViewModels.Pais.PaisListVm
+﻿@model TiendaVirtual.Web.ViewModels.Pais.PaisDetailVm
 
 @{
     ViewBag.Title = "Details";
@@ -11,19 +11,54 @@
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">
-                @Html.DisplayNameFor(model => model.NombrePais)
-                @Html.TextBoxFor(model => model.NombrePais, new {@class="form-control", @disabled = "disabled"})
-            </div>         
+                @Html.DisplayNameFor(model => model.Pais.NombrePais)
+                @Html.TextBoxFor(model => model.Pais.NombrePais, new { @class = "form-control", @disabled = "disabled" })
+            </div>
         </div>
         <div class="col-md-6">
-            <div class="form-group">
-                @Html.DisplayNameFor(model => model.CantidadCiudades)
-                @Html.TextBoxFor(model => model.CantidadCiudades, new { @class = "form-control", @disabled = "disabled" })
+            <div class="form-group mt-3">
+                @Html.DisplayNameFor(model => model.Pais.CantidadCiudades)
+                @Html.TextBoxFor(model => model.Pais.CantidadCiudades, new { @class = "form-control", @disabled = "disabled" })
             </div>
         </div>
     </div>
+    <p class="mt-3">
+        @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }, new { @class = "btn btn-warning" }) |
+        @Html.ActionLink("Agregar Ciudad", "AddCity", new {paisId = Model.Pais.PaisId}, new { @class = "btn btn-primary" }) |
+        @Html.ActionLink("Volver", "Index", null, new { @class = "btn btn-success" })
+    </p>
+    <table class="border-0 table table-bordered table-hover table-dark w-75">
+        <tr>
+            <th class="w-40">
+                @Html.DisplayNameFor(model => model.Ciudades.FirstOrDefault().NombreCiudad)
+            </th>
+            <th class="w-25">Acciones</th>
+        </tr>
+        @if (Model.Ciudades.Any())
+        {
+            foreach (var item in Model.Ciudades)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NombreCiudad)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Editar", "Edit", new { id = item.CiudadId }, new { @class = "btn btn-sm btn-warning" }) |
+                        @Html.ActionLink("Borrar", "Delete", new { id = item.CiudadId }, new { @class = "btn btn-sm btn-danger" })
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="2" style="text-align:center"class="text-danger"> <strong>No se han agregado ciudades todavía.</strong></td> 
+            </tr>
+        }
+
+
+    </table>
+
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }, new {@class= "btn btn-warning"}) |
-    @Html.ActionLink("Volver", "Index", null, new {@class = "btn btn-success"})
-</p>
+<hr />
+
