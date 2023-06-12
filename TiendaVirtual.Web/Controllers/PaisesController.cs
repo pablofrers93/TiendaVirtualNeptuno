@@ -186,16 +186,51 @@ namespace TiendaVirtual.Web.Controllers
             {
                 return HttpNotFound("Codigo de pais inexistente");
             }
-            var listaPaises = _servicio.GetPaises();
-            var ciudadVm = new CiudadEditVm()
-            {
-                Paises = listaPaises.Select(p => new SelectListItem()
-                {
-                    Text = p.NombrePais,
-                    Value = p.PaisId.ToString()
-                }).ToList()
-            };
+            var ciudadVm = new CiudadEditVm();
+            CargarPaises(ciudadVm);
             return View(ciudadVm); 
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddCity(CiudadEditVm ciudadVm)
+        {
+            if (!ModelState.IsValid)
+            {
+                var listaPaises = _servicio.GetPaises();
+                CargarPaises(ciudadVm);
+                return View (ciudadVm);
+            }
+            try
+            {
+                var ciudad = _mapper.Map<Ciudad>(ciudadVm);
+                if (!_servicioCiudades.Existe(ciudad))
+                {
+                    _servicioCiudades.Guardar(ciudad);
+                    return RedirectToAction($"Details/{ciudad.PaisId}");
+                }
+                else
+                {
+                    CargarPaises(ciudadVm);
+                    ModelState.AddModelError(string.Empty, "Ciudad existente");
+                    return View (ciudadVm);
+                }
+            }
+            catch (Exception)
+            {
+                CargarPaises(ciudadVm);
+                ModelState.AddModelError(string.Empty, "Error al intentar agregar una ciudad");
+                return View(ciudadVm);
+            }
+        }
+        private void CargarPaises(CiudadEditVm ciudadVm)
+        {
+            var listaPaises = _servicio.GetPaises();
+            ciudadVm.Paises = listaPaises.Select(p => new SelectListItem()
+            {
+                Text = p.NombrePais,
+                Value = p.PaisId.ToString()
+            }).ToList();
         }
         //private PaisEditVm GetPaisEditVmFromPais(Pais pais)
         //{
