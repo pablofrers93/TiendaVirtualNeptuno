@@ -223,6 +223,21 @@ namespace TiendaVirtual.Web.Controllers
                 return View(ciudadVm);
             }
         }
+        public ActionResult DeleteCity(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+            }
+            var ciudad = _servicioCiudades.GetCiudadPorId(id.Value);
+            if (ciudad == null)
+            {
+                return HttpNotFound("Codigo de ciudad inexistente");
+            }
+            var ciudadVm = _mapper.Map<CiudadEditVm>(ciudad);
+            CargarPaises(ciudadVm);
+            return View(ciudadVm);
+        }
         private void CargarPaises(CiudadEditVm ciudadVm)
         {
             var listaPaises = _servicio.GetPaises();
