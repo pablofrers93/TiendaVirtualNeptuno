@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Neptuno2022EF.Servicios.Servicios;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,14 +26,15 @@ namespace TiendaVirtual.Web.Controllers
             _mapper = AutoMapperConfig.Mapper;
             _servicioCiudades = servicioCiudades;
         }
-        public ActionResult Index()
+        public ActionResult Index(int? page, int? pageSize)
         {
             var lista = _servicio.GetPaises();
             //var listaVm = GetListaPaisesListVm(lista);
             var listaVm = _mapper.Map<List<PaisListVm>>(lista);
             listaVm.ForEach(p => p.CantidadCiudades = _servicioCiudades.GetCantidad(c => c.PaisId == p.PaisId));
-            
-            return View(listaVm);
+            page = page ?? 1;
+            pageSize = pageSize ?? 5;
+            return View(listaVm.ToPagedList(page.Value, pageSize.Value));
         }
         
         public ActionResult Create()
