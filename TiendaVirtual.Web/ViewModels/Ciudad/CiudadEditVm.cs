@@ -18,6 +18,7 @@ namespace TiendaVirtual.Web.ViewModels.Ciudad
         [DisplayName("País")]
         [Range(1, int.MaxValue, ErrorMessage = "Debe seleccionar un país")]
         public int PaisId { get; set; }
+        public int PaisAnteriorId { get; set; }
         public byte[] RowVersion { get; set; }
         public List<SelectListItem> Paises { get; set; }
     }

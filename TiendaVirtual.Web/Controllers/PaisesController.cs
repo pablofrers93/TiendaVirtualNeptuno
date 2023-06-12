@@ -238,6 +238,82 @@ namespace TiendaVirtual.Web.Controllers
             CargarPaises(ciudadVm);
             return View(ciudadVm);
         }
+        [HttpPost, ActionName("DeleteCity")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteCityConfirm(int id)
+        {
+            var ciudad = _servicioCiudades.GetCiudadPorId(id);
+            var ciudadVm = _mapper.Map<CiudadEditVm>(ciudad);
+            try
+            {
+                if (!_servicioCiudades.EstaRelacionada(ciudad))
+                {
+                    _servicioCiudades.Borrar(id);
+                    return RedirectToAction($"Details/{ciudad.PaisId}");
+                }
+                else
+                {
+                    CargarPaises(ciudadVm);
+                    ModelState.AddModelError(string.Empty, "Ciudad relacionada, baja denegada");
+                    return View(ciudadVm);
+                }
+            }
+            catch (Exception)
+            {
+                CargarPaises(ciudadVm);
+                ModelState.AddModelError(string.Empty, "Error al intentar borrar la ciudad");
+                return View(ciudadVm);
+            }
+        }
+
+        public ActionResult EditCity (int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+            }
+            var ciudad = _servicioCiudades.GetCiudadPorId(id.Value);
+            if (ciudad == null)
+            {
+                return HttpNotFound("Codigo de ciudad inexistente");
+            }
+            var ciudadVm = _mapper.Map<CiudadEditVm>(ciudad);
+            ciudadVm.PaisAnteriorId = ciudadVm.PaisId;
+            CargarPaises(ciudadVm);
+            return View(ciudadVm);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditCity(CiudadEditVm ciudadVm)
+        {
+            if (!ModelState.IsValid)
+            {
+                CargarPaises(ciudadVm);
+                return View(ciudadVm);
+            }
+            try
+            {
+                var ciudad = _mapper.Map<Ciudad>(ciudadVm);
+                if (!_servicioCiudades.Existe(ciudad))
+                {
+                    _servicioCiudades.Guardar(ciudad);
+                    return RedirectToAction($"Details/{ciudadVm.PaisAnteriorId}");
+                }
+                else
+                {
+                    CargarPaises(ciudadVm);
+                    ModelState.AddModelError(string.Empty, "Ciudad existente");
+                    return View(ciudadVm);
+                }
+
+            }
+            catch (Exception)
+            {
+                CargarPaises(ciudadVm);
+                ModelState.AddModelError(string.Empty, "Error al agregar la ciudad");
+                return View(ciudadVm);
+            }
+        }
         private void CargarPaises(CiudadEditVm ciudadVm)
         {
             var listaPaises = _servicio.GetPaises();
@@ -247,6 +323,7 @@ namespace TiendaVirtual.Web.Controllers
                 Value = p.PaisId.ToString()
             }).ToList();
         }
+
         //private PaisEditVm GetPaisEditVmFromPais(Pais pais)
         //{
         //    return new PaisEditVm()
