@@ -33,7 +33,8 @@ namespace TiendaVirtual.Web.Controllers
             var listaVm = _mapper.Map<List<PaisListVm>>(lista);
             listaVm.ForEach(p => p.CantidadCiudades = _servicioCiudades.GetCantidad(c => c.PaisId == p.PaisId));
             page = page ?? 1;
-            pageSize = pageSize ?? 5;
+            pageSize = pageSize ?? 10;
+            ViewBag.PageSize = pageSize;
             return View(listaVm.ToPagedList(page.Value, pageSize.Value));
         }
         

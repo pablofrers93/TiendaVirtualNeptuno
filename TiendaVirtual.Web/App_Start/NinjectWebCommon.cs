@@ -14,6 +14,7 @@ namespace TiendaVirtual.Web.App_Start
     using Ninject.Web.Common.WebHost;
     using TiendaVirtual.Datos;
     using TiendaVirtual.Datos.Interfaces;
+    using TiendaVirtual.Datos.Repositorios;
     using TiendaVirtual.Servicios.Interfaces;
 
     public static class NinjectWebCommon 
@@ -73,6 +74,9 @@ namespace TiendaVirtual.Web.App_Start
             kernel.Bind<IServiciosCategorias>().To<ServiciosCategorias>().InRequestScope();
             kernel.Bind<IRepositorioCiudades>().To<RepositorioCiudades>().InRequestScope();
             kernel.Bind<IServiciosCiudades>().To<ServiciosCiudades>().InRequestScope();
+            kernel.Bind<IRepositorioClientes>().To<RepositorioClientes>().InRequestScope();
+            kernel.Bind<IServiciosClientes>().To<ServiciosClientes>().InRequestScope();
+
         }
     }
 }
