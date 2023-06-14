@@ -241,11 +241,12 @@
     <Content Include="Views\Paises\AddCity.cshtml" />
     <Content Include="Views\Paises\DeleteCity.cshtml" />
     <Content Include="Views\Paises\EditCity.cshtml" />
+    <Content Include="Views\Clientes\Index.cshtml" />
+    <Content Include="Views\Clientes\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Clientes\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

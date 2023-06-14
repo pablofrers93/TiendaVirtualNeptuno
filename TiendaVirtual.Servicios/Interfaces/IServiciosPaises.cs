@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 using TiendaVirtual.Entidades.Entidades;
 
 namespace TiendaVirtual.Servicios.Interfaces
@@ -17,5 +18,6 @@ namespace TiendaVirtual.Servicios.Interfaces
         bool EstaRelacionado(Pais pais);
         List<Pais> GetPaisPorPagina(int cantidad, int pagina);
         int GetCantidad();
+        List<SelectListItem> GetPaisesDropDownList();
     }
 }

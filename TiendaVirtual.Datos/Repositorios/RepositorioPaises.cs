@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Web.Mvc;
 using TiendaVirtual.Datos;
 using TiendaVirtual.Datos.Interfaces;
 using TiendaVirtual.Entidades.Entidades;
@@ -114,6 +115,17 @@ namespace Neptuno2022EF.Datos.Repositorios
 
                 throw;
             }
+        }
+
+        public List<SelectListItem> GetPaisesDropDownList()
+        {
+            var listaPaises = GetPaises();
+            var dropDownPaises = listaPaises.Select(p => new SelectListItem()
+            {
+                Text = p.NombrePais,
+                Value = p.PaisId.ToString()
+            }).ToList();
+            return dropDownPaises;
         }
 
         public List<Pais> GetPaisesPorPagina(int cantidad, int pagina)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 using TiendaVirtual.Datos;
 using TiendaVirtual.Datos.Interfaces;
 using TiendaVirtual.Entidades.Entidades;
@@ -86,6 +87,19 @@ namespace Neptuno2022EF.Servicios.Servicios
             try
             {
                 return _repositorio.GetPaises();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public List<SelectListItem> GetPaisesDropDownList()
+        {
+            try
+            {
+                return _repositorio.GetPaisesDropDownList();
             }
             catch (Exception)
             {
