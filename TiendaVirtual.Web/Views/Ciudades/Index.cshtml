@@ -1,4 +1,5 @@
-﻿@model TiendaVirtual.Web.ViewModels.Ciudad.CiudadFiltroVm
+﻿@using PagedList.Mvc
+@model TiendaVirtual.Web.ViewModels.Ciudad.CiudadFiltroVm
 
 @{
     ViewBag.Title = "Index";
@@ -26,7 +27,7 @@
             <label>País:</label>
         </div>
         <div class="col-auto">
-            @Html.DropDownListFor(model => model.PaisFiltro, Model.Paises, "Seleccione pais", new { @class = "form-select" })
+            @Html.DropDownListFor(model => model.PaisFiltro, Model.Paises, "Ver todos", new { @class = "form-select" })
         </div>
         <div class="col-auto">
             <input type="submit" value="Filtrar" class="btn btn-secondary" />
@@ -63,3 +64,10 @@
     }
 
 </table>
+Página: @(Model.Ciudades.PageCount < Model.Ciudades.PageNumber ? 0 : Model.Ciudades.PageNumber) de: @Model.Ciudades.PageCount
+@Html.PagedListPager(Model.Ciudades, page => Url.Action("Index", new
+{
+    paisFiltro = Model.PaisFiltro,
+    page,
+    pageSize = ViewBag.PageSize
+}))
