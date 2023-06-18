@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 using TiendaVirtual.Entidades.Dtos.Ciudad;
 using TiendaVirtual.Entidades.Entidades;
 
@@ -21,5 +22,6 @@ namespace TiendaVirtual.Servicios.Interfaces
         int GetCantidad();
         List<CiudadListDto> GetCiudadesPorPagina(int cantidad, int pagina);
         int GetCantidad(Func<Ciudad, bool> predicado);
+        List<SelectListItem> GetCiudadesDropDownList(int paisId);
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Web.Mvc;
 using TiendaVirtual.Datos;
 using TiendaVirtual.Datos.Interfaces;
 using TiendaVirtual.Entidades.Dtos.Ciudad;
@@ -10,13 +11,13 @@ namespace Neptuno2022EF.Servicios.Servicios
 {
     public class ServiciosCiudades : IServiciosCiudades
     {
-        private readonly IRepositorioCiudades _repitorioCiudades;
+        private readonly IRepositorioCiudades _repositorioCiudades;
         private readonly IUnitOfWork _unitOfWork;
 
 
-        public ServiciosCiudades(IRepositorioCiudades repitorioCiudades, IUnitOfWork unitOfWork)
+        public ServiciosCiudades(IRepositorioCiudades repositorioCiudades, IUnitOfWork unitOfWork)
         {
-            _repitorioCiudades = repitorioCiudades;
+            _repositorioCiudades = repositorioCiudades;
             _unitOfWork = unitOfWork;
         }
 
@@ -24,7 +25,7 @@ namespace Neptuno2022EF.Servicios.Servicios
         {
             try
             {
-                _repitorioCiudades.Borrar(ciudadId);
+                _repositorioCiudades.Borrar(ciudadId);
                 _unitOfWork.SaveChanges();
             }
             catch (Exception)
@@ -38,7 +39,7 @@ namespace Neptuno2022EF.Servicios.Servicios
         {
             try
             {
-                return _repitorioCiudades.EstaRelacionada(ciudad);
+                return _repositorioCiudades.EstaRelacionada(ciudad);
             }
             catch (Exception)
             {
@@ -51,7 +52,7 @@ namespace Neptuno2022EF.Servicios.Servicios
         {
             try
             {
-                return _repitorioCiudades.Existe(ciudad);
+                return _repositorioCiudades.Existe(ciudad);
             }
             catch (Exception)
             {
@@ -64,7 +65,7 @@ namespace Neptuno2022EF.Servicios.Servicios
         {
             try
             {
-                return _repitorioCiudades.GetCiudades();
+                return _repositorioCiudades.GetCiudades();
             }
             catch (Exception)
             {
@@ -77,7 +78,7 @@ namespace Neptuno2022EF.Servicios.Servicios
         {
             try
             {
-                return _repitorioCiudades.GetCiudadPorId(ciudadId);
+                return _repositorioCiudades.GetCiudadPorId(ciudadId);
             }
             catch (Exception)
             {
@@ -90,7 +91,7 @@ namespace Neptuno2022EF.Servicios.Servicios
         {
             try
             {
-                return _repitorioCiudades.GetCiudades(paisId);
+                return _repositorioCiudades.GetCiudades(paisId);
             }
             catch (Exception)
             {
@@ -105,12 +106,12 @@ namespace Neptuno2022EF.Servicios.Servicios
             {
                 if (ciudad.CiudadId==0)
                 {
-                    _repitorioCiudades.Agregar(ciudad);
+                    _repositorioCiudades.Agregar(ciudad);
                    
                 }
                 else
                 {
-                    _repitorioCiudades.Editar(ciudad);
+                    _repositorioCiudades.Editar(ciudad);
                 }
                 _unitOfWork.SaveChanges();
                 
@@ -127,7 +128,7 @@ namespace Neptuno2022EF.Servicios.Servicios
         {
             try
             {
-                return _repitorioCiudades.Filtrar(predicado, cantidad, pagina);
+                return _repositorioCiudades.Filtrar(predicado, cantidad, pagina);
             }
             catch (Exception)
             {
@@ -140,7 +141,7 @@ namespace Neptuno2022EF.Servicios.Servicios
         {
             try
             {
-                return _repitorioCiudades.GetCantidad();
+                return _repositorioCiudades.GetCantidad();
             }
             catch (Exception)
             {
@@ -153,7 +154,7 @@ namespace Neptuno2022EF.Servicios.Servicios
         {
             try
             {
-                return _repitorioCiudades.GetCiudadesPorPagina(cantidad, pagina);
+                return _repositorioCiudades.GetCiudadesPorPagina(cantidad, pagina);
             }
             catch (Exception)
             {
@@ -166,7 +167,20 @@ namespace Neptuno2022EF.Servicios.Servicios
         {
             try
             {
-                return _repitorioCiudades.GetCantidad(predicado);
+                return _repositorioCiudades.GetCantidad(predicado);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public List<SelectListItem> GetCiudadesDropDownList(int paisId)
+        {
+            try
+            {
+                return _repositorioCiudades.GetCiudadesDropDownList(paisId);
             }
             catch (Exception)
             {

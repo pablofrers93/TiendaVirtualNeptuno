@@ -24,6 +24,12 @@ namespace TiendaVirtual.Web.Mapping
         private void LoadClientesMapping()
         {
             CreateMap<ClienteListDto, ClienteListVm>();
+            CreateMap<Cliente, ClienteEditVm>().ReverseMap();
+            CreateMap<Cliente, ClienteListVm>()
+                .ForMember(dest => dest.ClienteId, opt => opt.MapFrom(src => src.Id))
+                .ForMember(dest => dest.NombreCliente, opt => opt.MapFrom(src => src.Nombre))
+                .ForMember(dest => dest.Pais, opt => opt.MapFrom(src => src.Pais.NombrePais))
+                .ForMember(dest => dest.Ciudad, opt => opt.MapFrom(src => src.Ciudad.NombreCiudad)); 
         }
 
         private void LoadCiudadesMapping()

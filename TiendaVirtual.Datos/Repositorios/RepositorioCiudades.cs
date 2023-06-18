@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Web.Mvc;
 using TiendaVirtual.Datos;
 using TiendaVirtual.Datos.Interfaces;
 using TiendaVirtual.Entidades.Dtos.Ciudad;
@@ -164,6 +165,17 @@ namespace Neptuno2022EF.Datos.Repositorios
 
                 throw;
             }
+        }
+
+        public List<SelectListItem> GetCiudadesDropDownList(int paisId)
+        {
+            var lista = GetCiudades(paisId);
+            var dropDownCiudades = lista.Select(c => new SelectListItem
+            {
+                Text = c.NombreCiudad,
+                Value = c.CiudadId.ToString()
+            }).ToList();
+            return dropDownCiudades;    
         }
 
         public List<CiudadListDto> GetCiudadesPorPagina(int cantidad, int pagina)

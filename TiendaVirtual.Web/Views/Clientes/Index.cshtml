@@ -3,13 +3,20 @@
 @{
     ViewBag.Title = "Index";
 }
-
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+<div class="d-flex justify-content-between w-75">
+    <h2>Lista de Clientes</h2>
+    <p>
+        @Html.ActionLink("Nuevo", "Create", null, new { @class = "btn btn-primary" })
+    </p>
+</div>
+@if (TempData["Msg"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show w-75" role="alert">
+        @TempData["Msg"].ToString()
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+<table class="border-0 table table-bordered table-hover table-dark w-75 mt-3">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.NombreCliente)
@@ -20,26 +27,27 @@
         <th>
             @Html.DisplayNameFor(model => model.Ciudad)
         </th>
-        <th></th>
+        <th>Acciones</th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.NombreCliente)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Pais)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Ciudad)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreCliente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pais)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ciudad)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ClienteId }, new { @class = "btn btn-sm btn btn-warning" })  |
+                @Html.ActionLink("Details", "Details", new { id = item.ClienteId }, new { @class = "btn btn-sm btn btn-info" }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ClienteId }, new { @class = "btn btn-sm btn btn-danger" })
+            </td>
+        </tr>
+    }
 
 </table>

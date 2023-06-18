@@ -52,17 +52,12 @@ namespace TiendaVirtual.Datos.Repositorios
         {
             try
             {
-                var clienteInDb = GetClientePorId(cliente.Id);
-                if (clienteInDb == null)
-                {
-                    throw new Exception("Registro borrado por otro usuario");
-                }
                 _context.Entry(cliente).State = EntityState.Modified;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                Console.WriteLine(ex.Data.ToString());
+                throw ex;
             }
         }
 
@@ -135,7 +130,9 @@ namespace TiendaVirtual.Datos.Repositorios
                     NombreCliente = c.Nombre,
                     Pais = c.Pais.NombrePais,
                     Ciudad = c.Ciudad.NombreCiudad
-                }).ToList();
+                })
+                .OrderBy(c=>c.NombreCliente)
+                .ToList();
         }
 
         public List<ClienteListDto> GetClientes(int paisId, int ciudadId)
