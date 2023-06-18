@@ -27,11 +27,26 @@ namespace TiendaVirtual.Web.Controllers
             _servicioPaises = servicioPaises;
             _mapper = AutoMapperConfig.Mapper;
         }
-        public ActionResult Index()
+        public ActionResult Index(int? paisFiltro)
         {
-            var lista = _servicio.GetCiudades();
+            List<CiudadListDto> lista;
+            if (paisFiltro==null)
+            {
+                lista = _servicio.GetCiudades();
+            }
+            else
+            {
+                lista = _servicio.GetCiudades(paisFiltro.Value);
+            }
+            
             var listaVm = _mapper.Map<List<CiudadListVm>>(lista);
-            return View(listaVm);
+            var ciudadVm = new CiudadFiltroVm
+            {
+                Paises = _servicioPaises.GetPaisesDropDownList(),
+                Ciudades = listaVm
+            };
+
+            return View(ciudadVm);
         }
 
         public ActionResult Create()

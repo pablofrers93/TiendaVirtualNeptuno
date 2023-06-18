@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TiendaVirtual.Web.ViewModels.Ciudad.CiudadListVm>
+﻿@model TiendaVirtual.Web.ViewModels.Ciudad.CiudadFiltroVm
 
 @{
     ViewBag.Title = "Index";
@@ -19,18 +19,33 @@
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 }
-<table class="border-0 table table-bordered table-hover table-dark w-75">
+@using (Html.BeginForm("Index", "Ciudades", FormMethod.Get))
+{
+    <div class="row">
+        <div class="col-auto">
+            <label>País:</label>
+        </div>
+        <div class="col-auto">
+            @Html.DropDownListFor(model => model.PaisFiltro, Model.Paises, "Seleccione pais", new { @class = "form-select" })
+        </div>
+        <div class="col-auto">
+            <input type="submit" value="Filtrar" class="btn btn-secondary" />
+        </div>
+    </div>
+}
+
+<table class="border-0 table table-bordered table-hover table-dark w-75 mt-3">
     <tr>
         <th class="w-40">
-            @Html.DisplayNameFor(model => model.NombreCiudad)
+            @Html.DisplayNameFor(model => model.Ciudades.FirstOrDefault().NombreCiudad)
         </th>
         <th class="w-35">
-            @Html.DisplayNameFor(model => model.NombrePais)
+            @Html.DisplayNameFor(model => model.Ciudades.FirstOrDefault().NombrePais)
         </th>
         <th class="w-25">Acciones</th>
     </tr>
 
-    @foreach (var item in Model)
+    @foreach (var item in Model.Ciudades)
     {
         <tr>
             <td>
@@ -40,9 +55,9 @@
                 @Html.DisplayFor(modelItem => item.NombrePais)
             </td>
             <td>
-                @Html.ActionLink("Editar", "Edit", new { id=item.CiudadId }, new { @class = "btn btn-sm btn-warning" }) |
+                @Html.ActionLink("Editar", "Edit", new { id = item.CiudadId }, new { @class = "btn btn-sm btn-warning" }) |
                 @Html.ActionLink("Detalles", "Details", new { /* id=item.PrimaryKey */ }, new { @class = "btn btn-sm btn-info" }) |
-                @Html.ActionLink("Borrar", "Delete", new { id=item.CiudadId }, new { @class = "btn btn-sm btn-danger" })
+                @Html.ActionLink("Borrar", "Delete", new { id = item.CiudadId }, new { @class = "btn btn-sm btn-danger" })
             </td>
         </tr>
     }

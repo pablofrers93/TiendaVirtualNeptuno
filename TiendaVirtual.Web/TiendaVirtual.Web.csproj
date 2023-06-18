@@ -166,6 +166,7 @@
     <Compile Include="ViewModels\Categoria\CategoriaEditVm.cs" />
     <Compile Include="ViewModels\Categoria\CategoriaListVm.cs" />
     <Compile Include="ViewModels\Ciudad\CiudadEditVm.cs" />
+    <Compile Include="ViewModels\Ciudad\CiudadFiltroVm.cs" />
     <Compile Include="ViewModels\Ciudad\CiudadListVm.cs" />
     <Compile Include="ViewModels\Cliente\ClienteEditVm.cs" />
     <Compile Include="ViewModels\Cliente\ClienteListVm.cs" />
