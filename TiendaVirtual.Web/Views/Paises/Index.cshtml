@@ -1,4 +1,4 @@
-﻿@using PagedList.Mvc;
+﻿﻿@using PagedList.Mvc;
 @model PagedList.IPagedList<TiendaVirtual.Web.ViewModels.Pais.PaisListVm>
 
 @{
@@ -9,43 +9,38 @@
     <p>
         @Html.ActionLink("Nuevo", "Create", null, new { @class = "btn btn-primary" })
     </p>
+
 </div>
-@if (TempData["Msg"] != null)
-{
-    <div class="alert alert-success alert-dismissible fade show w-75" role="alert">
-        @TempData["Msg"].ToString()
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-}
-@using (Html.BeginForm("Index", "Paises", FormMethod.Get))
+@using (@Html.BeginForm("Index", "Paises", FormMethod.Get))
 {
     <div class="row">
         <div class="col-auto">
             <label>Mostrar:</label>
         </div>
         <div class="col-auto">
-            <select name="PageSize" , class="form-select">
-                <option @if (((int)ViewBag.PageSize).ToString() == "5") {@Html.Raw("selected"); } value="5">5</option>
-                <option @if (((int)ViewBag.PageSize).ToString() == "10") {@Html.Raw("selected"); } value="10">10</option>
-                <option @if (((int)ViewBag.PageSize).ToString() == "15") {@Html.Raw("selected"); } value = "15" > 15</option>
-                <option @if (((int)ViewBag.PageSize).ToString() == "20") {@Html.Raw("selected"); } value="20">20</option>
+            <select name="PageSize" class="form-select">
+                <option @if (((int)ViewBag.PageSize).ToString() == "5") { @Html.Raw("selected") ; } value="5">5</option>
+                <option @if (((int)ViewBag.PageSize).ToString() == "10") { @Html.Raw("selected") ; } value="10">10</option>
+                <option @if (((int)ViewBag.PageSize).ToString() == "15") { @Html.Raw("selected") ; } value="15">15</option>
+                <option @if (((int)ViewBag.PageSize).ToString() == "20") { @Html.Raw("selected") ; } value="20">20</option>
             </select>
         </div>
         <div class="col-auto">
             <input type="submit" value="Aplicar" class="btn btn-secondary" />
         </div>
     </div>
+
 }
 
-
-<table class="border-0 table table-bordered table-hover table-dark w-75 mt-3">
+<table class="table table-bordered table-hover w-75 mt-3">
     <tr>
-        <th class="w-35">
-            @Html.DisplayNameFor(model => model.FirstOrDefault().NombrePais)
+        <th class="w-50">
+           @Html.DisplayNameFor(model => model[0].NombrePais)
         </th>
         <th class="w-25">
-            @Html.DisplayNameFor(model => model.FirstOrDefault().CantidadCiudades)
+           @Html.DisplayNameFor(model => model[0].CantidadCiudades)
         </th>
+
         <th class="w-25">
             Acciones
         </th>
@@ -57,13 +52,13 @@
             <td>
                 @Html.DisplayFor(modelItem => item.NombrePais)
             </td>
-            <td>
+            <td style="text-align:right">
                 @Html.DisplayFor(modelItem => item.CantidadCiudades)
             </td>
             <td>
-                @Html.ActionLink("Editar", "Edit", new { id = item.PaisId }, new { @class = "btn btn-sm btn btn-warning" }) |
-                @Html.ActionLink("Detalles", "Details", new { id = item.PaisId }, new { @class = "btn btn-sm btn btn-info" }) |
-                @Html.ActionLink("Borrar", "Delete", new { id = item.PaisId }, new { @class = "btn btn-sm btn btn-danger" })
+                @Html.ActionLink("Editar", "Edit", new { id = item.PaisId }, new { @class = "btn btn-sm btn-warning" })
+                @Html.ActionLink("Detalles", "Details", new { id = item.PaisId }, new { @class = "btn btn-sm btn-info" })
+                @Html.ActionLink("Borrar", "Delete", new { id = item.PaisId }, new { @class = "btn btn-sm btn-danger" })
             </td>
         </tr>
     }
@@ -75,3 +70,4 @@ Página: @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de: @Model
     page,
     pageSize = ViewBag.PageSize
 }))
+
