@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TiendaVirtual.Datos.Interfaces;
 using TiendaVirtual.Entidades.Dtos.Producto;
 using TiendaVirtual.Entidades.Entidades;
@@ -110,6 +108,7 @@ namespace TiendaVirtual.Datos.Repositorios
                     PrecioUnitario = p.PrecioUnitario,
                     UnidadesDisponibles = p.Stock - p.UnidadesEnPedido,
                     Suspendido = p.Suspendido,
+                    Imagen = p.Imagen
                 }).ToList();
         }
 
@@ -125,6 +124,7 @@ namespace TiendaVirtual.Datos.Repositorios
                     PrecioUnitario = p.PrecioUnitario,
                     UnidadesDisponibles = p.Stock - p.UnidadesEnPedido,
                     Suspendido = p.Suspendido,
+                    Imagen = p.Imagen
                 }).ToList();
 
         }

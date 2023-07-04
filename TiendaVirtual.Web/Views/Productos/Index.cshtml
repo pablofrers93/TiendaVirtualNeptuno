@@ -28,6 +28,9 @@
         <th class="w-10">
             @Html.DisplayNameFor(model => model.Suspendido)
         </th>
+        <th class="w-10">
+            @Html.DisplayNameFor(model => model.Imagen)
+        </th>
         <th class="w-30">Acciones</th>
     </tr>
 
@@ -48,6 +51,16 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Suspendido)
+            </td>
+            <td>
+                @if (item.Imagen != null)
+                {
+                    <img src="@Url.Content(TiendaVirtual.Utilidades.WC.ProductosImagenesFolder+item.Imagen)" style="width:50px; height:50px" />
+                }
+                else
+                {
+                    <img src="@Url.Content(TiendaVirtual.Utilidades.WC.SinImagenDisponible)" style="width:50px; height:50px" />
+                }
             </td>
             <td>
                 @Html.ActionLink("Editar", "Edit", new { id = item.ProductoId }, new { @class = "btn btn-sm btn btn-warning" }) |

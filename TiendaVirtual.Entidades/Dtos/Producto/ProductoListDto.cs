@@ -9,6 +9,7 @@ namespace TiendaVirtual.Entidades.Dtos.Producto
         public decimal PrecioUnitario { get; set; }
         public int UnidadesDisponibles { get; set; }
         public bool Suspendido { get; set; }
+        public string Imagen { get; set; }
 
     }
 }
