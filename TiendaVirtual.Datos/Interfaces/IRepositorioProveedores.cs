@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 using TiendaVirtual.Entidades.Dtos.Proveedor;
 using TiendaVirtual.Entidades.Entidades;
 
@@ -19,5 +20,6 @@ namespace TiendaVirtual.Datos.Interfaces
         List<ProveedorListDto> GetProveedores();
         List<ProveedorListDto> GetProveedores(int paisId, int ciudadId);
         List<ProveedorListDto> Filtrar(Func<Proveedor, bool> predicado);
+        List<SelectListItem> GetProveedoresDropDownList();
     }
 }

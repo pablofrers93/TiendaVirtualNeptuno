@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Web.Mvc;
 using TiendaVirtual.Datos;
 using TiendaVirtual.Datos.Interfaces;
 using TiendaVirtual.Entidades.Dtos.Proveedor;
@@ -160,6 +161,16 @@ namespace TiendaVirtual.Datos.Repositorios
 
                 throw ex;
             }
+        }
+        public List<SelectListItem> GetProveedoresDropDownList()
+        {
+            var lista = GetProveedores();
+            var dropDown = lista.Select(p => new SelectListItem
+            {
+                Text = p.NombreProveedor,
+                Value = p.ProveedorId.ToString()
+            }).ToList();
+            return dropDown;
         }
 
     }

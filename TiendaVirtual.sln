@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TiendaVirtual.Servicios", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TiendaVirtual.Web", "TiendaVirtual.Web\TiendaVirtual.Web.csproj", "{96FDA836-06A3-44ED-93E5-31F3C0C9B247}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TiendaVirtual.Utilidades", "TiendaVirtual.Utilidades\TiendaVirtual.Utilidades.csproj", "{5D9A5F5C-4146-44D7-8581-EBE1AD23F681}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{96FDA836-06A3-44ED-93E5-31F3C0C9B247}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{96FDA836-06A3-44ED-93E5-31F3C0C9B247}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{96FDA836-06A3-44ED-93E5-31F3C0C9B247}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D9A5F5C-4146-44D7-8581-EBE1AD23F681}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D9A5F5C-4146-44D7-8581-EBE1AD23F681}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D9A5F5C-4146-44D7-8581-EBE1AD23F681}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D9A5F5C-4146-44D7-8581-EBE1AD23F681}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

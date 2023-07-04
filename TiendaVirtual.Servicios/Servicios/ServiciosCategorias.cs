@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Web.Mvc;
 using TiendaVirtual.Datos;
 using TiendaVirtual.Datos.Interfaces;
 using TiendaVirtual.Entidades.Entidades;
@@ -139,6 +140,18 @@ namespace Neptuno2022EF.Servicios.Servicios
             try
             {
                 return _repositorio.GetCategoriasPorPagina(cantidad, pagina);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        public List<SelectListItem> GetCategoriasDropDownList()
+        {
+            try
+            {
+                return _repositorio.GetCategoriasDropDownList();
             }
             catch (Exception)
             {

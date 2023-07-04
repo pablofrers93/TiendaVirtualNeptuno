@@ -69,5 +69,6 @@ Página: @(Model.Clientes.PageCount < Model.Clientes.PageNumber ? 0 : Model.Clie
 {
     page,
     pageSize = ViewBag.PageSize,
-    SortBy = Model.SortBy
+    SortBy = Model.SortBy,
+    SearchBy = Model.SearchBy
 }))

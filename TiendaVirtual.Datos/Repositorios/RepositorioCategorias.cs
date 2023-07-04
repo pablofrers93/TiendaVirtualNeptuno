@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 using TiendaVirtual.Datos;
 using TiendaVirtual.Datos.Interfaces;
 using TiendaVirtual.Entidades.Entidades;
@@ -148,6 +149,16 @@ namespace Neptuno2022EF.Datos.Repositorios
 
                 throw;
             }
+        }
+        public List<SelectListItem> GetCategoriasDropDownList()
+        {
+            var lista = GetCategorias();
+            var dropDown = lista.Select(c => new SelectListItem
+            {
+                Text = c.NombreCategoria,
+                Value = c.CategoriaId.ToString()
+            }).ToList();
+            return dropDown;
         }
 
     }

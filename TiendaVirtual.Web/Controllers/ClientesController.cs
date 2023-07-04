@@ -28,12 +28,18 @@ namespace TiendaVirtual.Web.Controllers
             _serviciosCiudades = serviciosCiudades;
             _mapper = AutoMapperConfig.Mapper;
         }
-        public ActionResult Index(int? page, int? pageSize, string SortBy)
+        public ActionResult Index(int? page, int? pageSize, string SortBy, string searchBy=null)
         {
             page = page?? 1;
             pageSize = pageSize?? 10;
-            var lista = _servicios.GetClientes();
+            var lista = _servicios.GetClientes(); 
+            if (searchBy != null)
+            {
+                lista = lista.Where(c=>c.NombreCliente.Contains(searchBy)||c.Pais.Contains(searchBy))
+                             .ToList();
+            }
             var listaVm = _mapper.Map<List<ClienteListVm>>(lista);
+            
             if (SortBy=="Cliente")
             {
                 listaVm = listaVm.OrderBy(c => c.NombreCliente).ToList();
@@ -49,7 +55,8 @@ namespace TiendaVirtual.Web.Controllers
                    {"Por Cliente", "Cliente"},
                    {"Por País", "País" }
                 },
-                SortBy = SortBy
+                SortBy = SortBy,
+                SearchBy = searchBy                
             };
             return View(clienteVm);
         }

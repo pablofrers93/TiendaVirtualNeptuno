@@ -380,6 +380,7 @@
     <Compile Include="ViewModels\Pais\PaisDetailVm.cs" />
     <Compile Include="ViewModels\Pais\PaisEditVm.cs" />
     <Compile Include="ViewModels\Pais\PaisListVm.cs" />
+    <Compile Include="ViewModels\Producto\ProductoEditVm.cs" />
     <Compile Include="ViewModels\Producto\ProductoListVm.cs" />
     <Compile Include="ViewModels\Proveedor\ProveedorEditVm.cs" />
     <Compile Include="ViewModels\Proveedor\ProveedorListVm.cs" />
@@ -520,9 +521,13 @@
     <Content Include="Views\Shared\_MostrarCliente.cshtml" />
     <Content Include="Views\Shared\_MostrarProducto.cshtml" />
     <Content Include="Views\Shared\_Notificacion.cshtml" />
+    <Content Include="Views\Productos\Create.cshtml" />
+    <Content Include="Views\Productos\Edit.cshtml" />
+    <Content Include="Views\Productos\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Imagenes\Productos\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Generico\" />
   </ItemGroup>
@@ -565,6 +570,10 @@
     <ProjectReference Include="..\TiendaVirtual.Servicios\TiendaVirtual.Servicios.csproj">
       <Project>{442a1963-a671-4746-80f9-79c8570453b7}</Project>
       <Name>TiendaVirtual.Servicios</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TiendaVirtual.Utilidades\TiendaVirtual.Utilidades.csproj">
+      <Project>{5d9a5f5c-4146-44d7-8581-ebe1ad23f681}</Project>
+      <Name>TiendaVirtual.Utilidades</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

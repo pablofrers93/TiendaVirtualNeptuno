@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Web.Mvc;
 using TiendaVirtual.Datos;
 using TiendaVirtual.Datos.Interfaces;
 using TiendaVirtual.Entidades.Dtos.Proveedor;
@@ -124,6 +125,18 @@ namespace Neptuno2022EF.Servicios.Servicios
                     _repositorio.Editar(proveedor);
                 }
                 _unitOfWork.SaveChanges();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        public List<SelectListItem> GetProveedoresDropDownList()
+        {
+            try
+            {
+                return _repositorio.GetProveedoresDropDownList();
             }
             catch (Exception)
             {

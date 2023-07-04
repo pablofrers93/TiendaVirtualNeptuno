@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Web.Mvc;
 using TiendaVirtual.Entidades.Entidades;
 
 namespace TiendaVirtual.Datos.Interfaces
@@ -14,6 +15,7 @@ namespace TiendaVirtual.Datos.Interfaces
         bool EstaRelacionado(Categoria categoria);
         List<Categoria> GetCategoriasPorPagina(int cantidad, int pagina);
         int GetCantidad();
+        List<SelectListItem> GetCategoriasDropDownList();
 
     }
 }
