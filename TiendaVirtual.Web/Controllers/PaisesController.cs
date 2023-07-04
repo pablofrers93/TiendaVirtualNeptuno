@@ -14,8 +14,9 @@ using TiendaVirtual.Web.ViewModels.Pais;
 
 namespace TiendaVirtual.Web.Controllers
 {
+    [Authorize]
     public class PaisesController : Controller
-    {
+    {    
         // GET: Paises
         private readonly IServiciosPaises _servicio;
         private readonly IServiciosCiudades _servicioCiudades;

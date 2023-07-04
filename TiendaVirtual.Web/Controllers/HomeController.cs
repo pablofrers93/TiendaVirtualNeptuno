@@ -30,6 +30,12 @@ namespace TiendaVirtual.Web.Controllers
             var cantidadProductos = _serviciosProductos.GetCantidad();
             var cantidadClientes = _serviciosClientes.GetCantidad();
             var cantidadVentas = _serviciosVentas.GetCantidad();
+
+            ViewBag.cantidadCategorias = cantidadCategorias;
+            ViewBag.cantidadProductos = cantidadProductos;
+            ViewBag.cantidadClientes = cantidadClientes;
+            ViewBag.cantidadVentas = cantidadVentas;
+
             return View();
         }
 

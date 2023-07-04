@@ -4,67 +4,92 @@
 
 <div class="row">
     <div class="col-3">
-        <div class="card text-bg-primary mb-3" style="max-width: 17rem;">
-            <div class="card-header">
-                <div class="d-flex justify-content-between">
-                    <h5>Categorías</h5>
-                    <i class="fa fa-2x fa-boxes"></i>
-                </div>
+        <div class="card text-bg-primary mb-3" style="max-width: 18rem;">
+
+            <div class="card-header d-flex justify-content-between">
+                <label class="fw-bold">Categorías</label>
+                <i class="fa fa-2x fa-boxes"></i>
             </div>
             <div class="card-body">
-                <h6 class="card-title">Cantidad:6</h6>
-                <p class="card-text">Some quick example</p>
+                <div class="row">
+                    <div class="col-sm-9">
+                        <h6>Cantidad:</h6>
+
+                    </div>
+                    <div class="col-sm-3">
+                        <h6>@ViewBag.cantidadCategorias</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-3">
+        <div class="card text-bg-secondary mb-3" style="max-width: 18rem;">
+            <div class="card-header d-flex justify-content-between">
+                <label class="fw-bold">Productos</label>
+                <i class="fa fa-2x fa-product-hunt"></i>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-9">
+                        <h6>Cantidad:</h6>
+
+                    </div>
+                    <div class="col-sm-3">
+                        <h6>@ViewBag.cantidadProductos</h6>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
     <div class="col-3">
-        <div class="card text-bg-secondary mb-3" style="max-width: 17rem;">
-            <div class="card-header">
-                <div class="d-flex justify-content-between">
-                    <h5>Productos</h5>
-                    <i class="fa fa-2x fa-box"></i>
-                </div>
+        <div class="card text-bg-success mb-3" style="max-width: 18rem;">
+            <div class="card-header d-flex justify-content-between">
+                <label class="fw-bold">Clientes</label>
+                <i class="fa fa-2x fa-user"></i>
             </div>
             <div class="card-body">
-                <h6 class="card-title">Cantidad:6</h6>
-                <p class="card-text">Some quick example</p>
+                <div class="row">
+                    <div class="col-sm-9">
+                        <h6>Cantidad:</h6>
+
+                    </div>
+                    <div class="col-sm-3">
+                        <h6>@ViewBag.cantidadClientes</h6>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
     <div class="col-3">
-        <div class="card text-bg-success mb-3" style="max-width: 17rem;">
-            <div class="card-header">
-                <div class="d-flex justify-content-between">
-                    <h5>Clientes</h5>
-                    <i class="fa fa-2x fa-user"></i>
-                </div>
+        <div class="card text-bg-danger mb-3" style="max-width: 18rem;">
+            <div class="card-header d-flex justify-content-between">
+                <label class="fw-bold">Ventas</label>
+                <i class="fa fa-2x fa-shopping-bag"></i>
             </div>
             <div class="card-body">
-                <h6 class="card-title">Cantidad:6</h6>
-                <p class="card-text">Some quick example</p>
-            </div>
-        </div>
-    </div>
-    <div class="col-3">
-        <div class="card text-bg-danger mb-3" style="max-width: 17rem;">
-            <div class="card-header">
-                <div class="d-flex justify-content-between">
-                    <h5>Ventas</h5>
-                    <i class="fa fa-2x fa-shopping-bag"></i>
+                <div class="row">
+                    <div class="col-sm-9">
+                        <h6>Cantidad:</h6>
+
+                    </div>
+                    <div class="col-sm-3">
+                        <h6>@ViewBag.cantidadVentas</h6>
+                    </div>
                 </div>
             </div>
-            <div class="card-body">
-                <h6 class="card-title">Cantidad:6</h6>
-                <p class="card-text">Some quick example</p>
-            </div>
         </div>
+
     </div>
+
 </div>
 <div class="px-4 py-5 my-5 text-center">
-    <img class="d-block mx-auto mb-4" src="@Url.Content(TiendaVirtual.Utilidades.WC.LogoDeNeptuno)" alt="" width="400" height="400" style="border-radius:30px">
+    <img class="d-block mx-auto mb-4" src="@Url.Content(TiendaVirtual.Utilidades.WC.LogoDeNeptuno)" alt="" width="300" height="300" style="border-radius:30px">
     <h1 class="display-5 fw-bold">Neptuno Tienda Virtual</h1>
     <div class="col-lg-6 mx-auto">
-        <p class="lead mb-4">¡Sitio de Neptuno!</p>
+        <p class="lead mb-4">¡Tienda Virtual Neptuno!</p>
         <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
             <button type="button" class="btn btn-primary btn-lg px-4 gap-3">Primary button</button>
             <button type="button" class="btn btn-outline-secondary btn-lg px-4">Secondary</button>
