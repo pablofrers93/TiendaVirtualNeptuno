@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using AutoMapper;
+using TiendaVirtual.Entidades.Dtos.Categoria;
 using TiendaVirtual.Entidades.Dtos.Ciudad;
 using TiendaVirtual.Entidades.Dtos.Cliente;
 using TiendaVirtual.Entidades.Dtos.DetalleVenta;
@@ -13,9 +14,11 @@ using TiendaVirtual.Entidades.Entidades;
 using TiendaVirtual.Web.ViewModels.Categoria;
 using TiendaVirtual.Web.ViewModels.Ciudad;
 using TiendaVirtual.Web.ViewModels.Cliente;
+using TiendaVirtual.Web.ViewModels.DetalleVenta;
 using TiendaVirtual.Web.ViewModels.Pais;
 using TiendaVirtual.Web.ViewModels.Producto;
 using TiendaVirtual.Web.ViewModels.Proveedor;
+using TiendaVirtual.Web.ViewModels.Venta;
 
 namespace TiendaVirtual.Web.Mapping
 {
@@ -29,23 +32,23 @@ namespace TiendaVirtual.Web.Mapping
             LoadProveedoresMapping();
             LoadProductosMapping();
             LoadCategoriasMapping();
-            //LoadVentasMapping();
-            //LoadDetalleVentaMapping();
+            LoadVentasMapping();
+            LoadDetalleVentaMapping();
         }
 
-        //private void LoadDetalleVentaMapping()
-        //{
-        //    CreateMap<DetalleVentaListDto, DetalleVentaListVm>();
-        //}
+        private void LoadDetalleVentaMapping()
+        {
+            CreateMap<DetalleVentaListDto, DetalleVentaListVm>();
+        }
 
-        //private void LoadVentasMapping()
-        //{
-        //    CreateMap<VentaListDto, VentaListVm>();
-        //}
+        private void LoadVentasMapping()
+        {
+            CreateMap<VentaListDto, VentaListVm>();
+        }
 
         private void LoadCategoriasMapping()
         {
-            //CreateMap<CategoriaListDto, CategoriaListVm>();
+            CreateMap<CategoriaListDto, CategoriaListVm>();
             CreateMap<Categoria, CategoriaEditVm>().ReverseMap();
             CreateMap<Categoria, CategoriaListVm>();
 

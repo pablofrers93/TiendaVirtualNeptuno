@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dtos\Categoria\CategoriaListDto.cs" />
     <Compile Include="Dtos\Ciudad\CiudadListDto.cs" />
     <Compile Include="Dtos\Cliente\ClienteListDto.cs" />
     <Compile Include="Dtos\DetalleVenta\DetalleVentaListDto.cs" />

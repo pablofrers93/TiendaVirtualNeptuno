@@ -10,5 +10,7 @@ namespace TiendaVirtual.Servicios.Interfaces
         List<DetalleVentaListDto> GetDetalleVenta(int ventaId);
         List<VentaListDto> GetVentas();
         void Guardar(Venta venta);
+        int GetCantidad();
+        VentaListDto GetVentasPorId(int value);
     }
 }

@@ -364,6 +364,7 @@
     <Compile Include="Controllers\PaisesController.cs" />
     <Compile Include="Controllers\ProductosController.cs" />
     <Compile Include="Controllers\ProveedoresController.cs" />
+    <Compile Include="Controllers\VentasController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -377,6 +378,7 @@
     <Compile Include="ViewModels\Cliente\ClienteEditVm.cs" />
     <Compile Include="ViewModels\Cliente\ClienteListSortVm.cs" />
     <Compile Include="ViewModels\Cliente\ClienteListVm.cs" />
+    <Compile Include="ViewModels\DetalleVenta\DetalleVentaListVm.cs" />
     <Compile Include="ViewModels\Pais\PaisDetailVm.cs" />
     <Compile Include="ViewModels\Pais\PaisEditVm.cs" />
     <Compile Include="ViewModels\Pais\PaisListVm.cs" />
@@ -384,6 +386,8 @@
     <Compile Include="ViewModels\Producto\ProductoListVm.cs" />
     <Compile Include="ViewModels\Proveedor\ProveedorEditVm.cs" />
     <Compile Include="ViewModels\Proveedor\ProveedorListVm.cs" />
+    <Compile Include="ViewModels\Venta\VentaDetailVm.cs" />
+    <Compile Include="ViewModels\Venta\VentaListVm.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\all.css" />
@@ -524,6 +528,8 @@
     <Content Include="Views\Productos\Create.cshtml" />
     <Content Include="Views\Productos\Edit.cshtml" />
     <Content Include="Views\Productos\Delete.cshtml" />
+    <Content Include="Views\Ventas\Index.cshtml" />
+    <Content Include="Views\Ventas\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

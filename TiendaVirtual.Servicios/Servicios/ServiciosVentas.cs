@@ -84,5 +84,29 @@ namespace Neptuno2022EF.Servicios.Servicios
                 throw;
             }
         }
+        public int GetCantidad()
+        {
+            try
+            {
+                return _repositorio.GetCantidad();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        public VentaListDto GetVentasPorId(int id)
+        {
+            try
+            {
+                return _repositorio.GetVentaPorId(id);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
     }
 }

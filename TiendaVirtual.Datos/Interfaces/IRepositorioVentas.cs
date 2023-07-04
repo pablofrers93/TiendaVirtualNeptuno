@@ -10,6 +10,7 @@ namespace TiendaVirtual.Datos.Interfaces
         List<VentaListDto> GetVentas();
         void Agregar(Venta venta);
         List<VentaListDto> Filtrar(Func<Venta, bool> predicado);
-        Venta GetVentaPorId(int id);
+        VentaListDto GetVentaPorId(int id);
+        int GetCantidad();
     }
 }

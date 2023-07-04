@@ -28,9 +28,20 @@ namespace TiendaVirtual.Datos.Repositorios
             throw new NotImplementedException();
         }
 
-        public Venta GetVentaPorId(int id)
+        public VentaListDto GetVentaPorId(int id)
         {
-            throw new NotImplementedException();
+            return _context.Ventas
+                .Include(v => v.Cliente)
+
+                .Select(v => new VentaListDto
+                {
+                    VentaId = v.VentaId,
+                    FechaVenta = v.FechaVenta,
+                    Cliente = v.Cliente.Nombre,
+                    Total = v.Total,
+                    Estado = v.Estado.ToString()
+                }).SingleOrDefault(v => v.VentaId == id);
+
         }
 
         public List<VentaListDto> GetVentas()
@@ -46,6 +57,10 @@ namespace TiendaVirtual.Datos.Repositorios
                     Total = v.Total,
                     Estado = v.Estado.ToString()
                 }).ToList();
+        }
+        public int GetCantidad()
+        {
+            return _context.Ventas.Count();
         }
     }
 }

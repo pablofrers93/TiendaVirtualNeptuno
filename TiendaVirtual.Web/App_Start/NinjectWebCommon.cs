@@ -80,6 +80,9 @@ namespace TiendaVirtual.Web.App_Start
             kernel.Bind<IServiciosProductos>().To<ServiciosProductos>().InRequestScope();
             kernel.Bind<IRepositorioProveedores>().To<RepositorioProveedores>().InRequestScope();
             kernel.Bind<IServiciosProveedores>().To<ServiciosProveedores>().InRequestScope();
+            kernel.Bind<IRepositorioVentas>().To<RepositorioVentas>().InRequestScope();
+            kernel.Bind<IServiciosVentas>().To<ServiciosVentas>().InRequestScope();
+            kernel.Bind<IRepositorioDetalleVentas>().To<RepositorioDetalleVentas>().InRequestScope();
 
 
         }

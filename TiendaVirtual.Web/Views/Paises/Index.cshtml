@@ -7,7 +7,10 @@
 <div class="d-flex justify-content-between w-75">
     <h2>Lista de Países</h2>
     <p>
-        @Html.ActionLink("Nuevo", "Create", null, new { @class = "btn btn-primary" })
+        <a class="btn btn-primary" href="@Url.Action("Create","Paises")">
+            <i class="fa fa-plus"></i>
+            Nuevo
+        </a>
     </p>
 
 </div>
@@ -26,7 +29,10 @@
             </select>
         </div>
         <div class="col-auto">
-            <input type="submit" value="Aplicar" class="btn btn-secondary" />
+            <button class="btn btn-secondary" type="submit">
+                <i class="fa fa-search"></i>
+                Aplicar
+            </button>
         </div>
     </div>
 
@@ -37,11 +43,11 @@
         <th class="w-50">
             @Html.DisplayNameFor(model => model[0].NombrePais)
         </th>
-        <th class="w-25">
+        <th class="w-15">
             @Html.DisplayNameFor(model => model[0].CantidadCiudades)
         </th>
 
-        <th class="w-25">
+        <th class="w-35">
             Acciones
         </th>
     </tr>
@@ -56,9 +62,18 @@
                 @Html.DisplayFor(modelItem => item.CantidadCiudades)
             </td>
             <td>
-                @Html.ActionLink("Editar", "Edit", new { id = item.PaisId }, new { @class = "btn btn-sm btn-warning" })
-                @Html.ActionLink("Detalles", "Details", new { id = item.PaisId }, new { @class = "btn btn-sm btn-info" })
-                @Html.ActionLink("Borrar", "Delete", new { id = item.PaisId }, new { @class = "btn btn-sm btn-danger" })
+                <a class="btn btn-sm btn-warning" href="@Url.Action("Edit","Paises", new {id = item.PaisId})">
+                    <i class="fa fa-edit"></i>
+                    Editar
+                </a>
+                <a class="btn btn-sm btn-info" href="@Url.Action("Details","Paises", new {id = item.PaisId})">
+                    <i class="fa fa-list"></i>
+                    Detalles
+                </a>
+                <a class="btn btn-sm btn-danger" href="@Url.Action("Delete","Paises", new {id = item.PaisId})">
+                    <i class="fa fa-trash"></i>
+                    Editar
+                </a>
             </td>
         </tr>
     }
