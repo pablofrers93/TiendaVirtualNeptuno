@@ -14,7 +14,6 @@ using TiendaVirtual.Web.ViewModels.Pais;
 
 namespace TiendaVirtual.Web.Controllers
 {
-    [Authorize]
     public class PaisesController : Controller
     {    
         // GET: Paises
@@ -38,7 +37,7 @@ namespace TiendaVirtual.Web.Controllers
             ViewBag.PageSize = pageSize;
             return View(listaVm.ToPagedList(page.Value, pageSize.Value));
         }
-        
+        [Authorize]
         public ActionResult Create()
         {
             return View();

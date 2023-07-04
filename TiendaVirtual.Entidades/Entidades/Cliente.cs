@@ -7,6 +7,7 @@ namespace TiendaVirtual.Entidades.Entidades
     {
         public string TelefonoFijo { get; set; }
         public string TelefonoMovil { get; set; }
+        public string Email { get; set; }
 
 
         public ClienteListDto ToClienteListDto()
