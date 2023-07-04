@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,11 +28,30 @@ namespace TiendaVirtual.Web.Controllers
             _serviciosCiudades = serviciosCiudades;
             _mapper = AutoMapperConfig.Mapper;
         }
-        public ActionResult Index()
+        public ActionResult Index(int? page, int? pageSize, string SortBy)
         {
+            page = page?? 1;
+            pageSize = pageSize?? 10;
             var lista = _servicios.GetClientes();
             var listaVm = _mapper.Map<List<ClienteListVm>>(lista);
-            return View(listaVm);
+            if (SortBy=="Cliente")
+            {
+                listaVm = listaVm.OrderBy(c => c.NombreCliente).ToList();
+            }
+            else
+            {
+                listaVm = listaVm.OrderBy(c => c.Pais).ThenBy(c => c.Ciudad).ToList();
+            }
+            var clienteVm = new ClienteListSortVm
+            {
+                Clientes = listaVm.ToPagedList(page.Value, pageSize.Value),
+                Sorts = new Dictionary<string, string> {
+                   {"Por Cliente", "Cliente"},
+                   {"Por País", "País" }
+                },
+                SortBy = SortBy
+            };
+            return View(clienteVm);
         }
         public ActionResult Create()
         {
@@ -78,12 +98,6 @@ namespace TiendaVirtual.Web.Controllers
                 clienteVm.Ciudades = _serviciosCiudades.GetCiudadesDropDownList(clienteVm.PaisId);
                 return View(clienteVm);
             }
-        }
-        public JsonResult GetCities(int paisId)
-        {
-            var lista = _serviciosCiudades.GetCiudades(paisId);
-            var ciudadesVm = _mapper.Map<List<CiudadListVm>>(lista);
-            return Json(ciudadesVm);
         }
         public ActionResult Edit (int? id)
         {

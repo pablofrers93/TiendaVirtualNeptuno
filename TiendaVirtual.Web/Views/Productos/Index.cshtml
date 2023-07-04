@@ -1,0 +1,60 @@
+﻿@model IEnumerable<TiendaVirtual.Web.ViewModels.Producto.ProductoListVm>
+
+@{
+    ViewBag.Title = "Index";
+}
+<div class="d-flex justify-content-between w-75">
+    <h2>Lista de Productos</h2>
+    <p>
+        @Html.ActionLink("Nueva", "Create", null, new { @class = "btn btn-primary" })
+    </p>
+</div>
+
+
+<table class="border-0 table table-bordered table-hover table-dark w-75">
+    <tr>
+        <th class="w-25">
+            @Html.DisplayNameFor(model => model.NombreProducto)
+        </th>
+        <th class="w-15">
+            @Html.DisplayNameFor(model => model.Categoria)
+        </th>
+        <th class="w-10">
+            @Html.DisplayNameFor(model => model.PrecioUnitario)
+        </th>
+        <th class="w-10">
+            @Html.DisplayNameFor(model => model.UnidadesDisponibles)
+        </th>
+        <th class="w-10">
+            @Html.DisplayNameFor(model => model.Suspendido)
+        </th>
+        <th class="w-30">Acciones</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreProducto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Categoria)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrecioUnitario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UnidadesDisponibles)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Suspendido)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.ProductoId }, new { @class = "btn btn-sm btn btn-warning" }) |
+                @Html.ActionLink("Detalles", "Details", new { id = item.ProductoId }, new { @class = "btn btn-sm btn btn-info" })|
+                @Html.ActionLink("Borrar", "Delete", new { id = item.ProductoId }, new { @class = "btn btn-sm btn btn-danger" })
+            </td>
+        </tr>
+    }
+
+</table>

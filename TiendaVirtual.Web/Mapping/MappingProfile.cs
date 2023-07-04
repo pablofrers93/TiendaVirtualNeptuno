@@ -5,10 +5,14 @@ using System.Web;
 using AutoMapper;
 using TiendaVirtual.Entidades.Dtos.Ciudad;
 using TiendaVirtual.Entidades.Dtos.Cliente;
+using TiendaVirtual.Entidades.Dtos.Producto;
+using TiendaVirtual.Entidades.Dtos.Proveedor;
 using TiendaVirtual.Entidades.Entidades;
 using TiendaVirtual.Web.ViewModels.Ciudad;
 using TiendaVirtual.Web.ViewModels.Cliente;
 using TiendaVirtual.Web.ViewModels.Pais;
+using TiendaVirtual.Web.ViewModels.Producto;
+using TiendaVirtual.Web.ViewModels.Proveedor;
 
 namespace TiendaVirtual.Web.Mapping
 {
@@ -19,6 +23,19 @@ namespace TiendaVirtual.Web.Mapping
             LoadPaisesMapping();
             LoadCiudadesMapping();
             LoadClientesMapping();
+            LoadProductosMapping();
+            LoadProveedoresMapping();
+        }
+
+        private void LoadProveedoresMapping()
+        {
+            CreateMap<ProveedorListDto, ProveedorListVm>();
+        }
+
+        private void LoadProductosMapping()
+        {
+            CreateMap<ProductoListDto, ProductoListVm>();
+           
         }
 
         private void LoadClientesMapping()

@@ -76,6 +76,11 @@ namespace TiendaVirtual.Web.App_Start
             kernel.Bind<IServiciosCiudades>().To<ServiciosCiudades>().InRequestScope();
             kernel.Bind<IRepositorioClientes>().To<RepositorioClientes>().InRequestScope();
             kernel.Bind<IServiciosClientes>().To<ServiciosClientes>().InRequestScope();
+            kernel.Bind<IRepositorioProductos>().To<RepositorioProductos>().InRequestScope();
+            kernel.Bind<IServiciosProductos>().To<ServiciosProductos>().InRequestScope();
+            kernel.Bind<IRepositorioProveedores>().To<RepositorioProveedores>().InRequestScope();
+            kernel.Bind<IServiciosProveedores>().To<ServiciosProveedores>().InRequestScope();
+
 
         }
     }

@@ -1,10 +1,11 @@
 {
   "dependencies": {
     "mssql1": {
-      "serviceConnectorResourceId": "",
+      "serviceConnectorResourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Web/sites/TiendaVirtualWeb20230626154957/providers/Microsoft.ServiceLinker/linkers/neptuno2022nube_FE25FAE3DB",
       "secretStore": "AzureAppSettings",
-      "type": "mssql.onprem",
-      "connectionId": "ConnectionStrings:DefaultConnection",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/nube-tienda-virtual/databases/neptuno2022-nube",
+      "type": "mssql.azure",
+      "connectionId": "neptuno2022-nube",
       "dynamicId": null
     }
   }

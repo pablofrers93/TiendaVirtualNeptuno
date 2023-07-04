@@ -1,7 +1,7 @@
-﻿<!DOCTYPE html>
+﻿﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
@@ -26,18 +26,48 @@
                             Archivos
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="@Url.Action("Index","Paises")">Paises</a></li>
-                            <li><a class="dropdown-item" href="@Url.Action("Index","Ciudades")">Ciudades</a></li>
+                            <li><a class="dropdown-item" href="@Url.Action("Index","Paises",new {area=string.Empty})">Países</a></li>
+                            <li><a class="dropdown-item" href="@Url.Action("Index","Ciudades",new {area=string.Empty})">Ciudades</a></li>
+                            <li><a class="dropdown-item" href="@Url.Action("Index","Clientes",new {area=string.Empty})">Clientes</a></li>
+
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="@Url.Action("Index","Categorias")">Categorías</a></li>
-                            <li><a class="dropdown-item" href="@Url.Action("Index","Clientes")">Clientes</a></li>
+                            <li><a class="dropdown-item" href="@Url.Action("Index","Categorias",new {area=string.Empty})">Categorías</a></li>
+                            <li><a class="dropdown-item" href="@Url.Action("Index","Proveedores",new {area=string.Empty})">Proveedores</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="@Url.Action("Index","Productos",new {area=string.Empty})">Productos</a></li>
+
                         </ul>
                     </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Ventas
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="@Url.Action("Index","Ventas",new {area=string.Empty})">Ventas</a></li>
+
+                            <li><hr class="dropdown-divider"></li>
+
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Seguridad
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="@Url.Action("Index","RolesAdmin",new {area="Identity"})">Roles</a></li>
+                            <li><a class="dropdown-item" href="@Url.Action("Index","UsersAdmin",new {area="Identity"})">Usuarios</a></li>
+
+                        </ul>
+                    </li>
+
+
                 </ul>
             </div>
+            @Html.Partial("_LoginPartial")
         </div>
     </nav>
     <div class="container body-content">
+        @Html.Partial("_Notificacion")
         @RenderBody()
         <hr />
         <footer>

@@ -19,7 +19,7 @@
         </div>
         <div class="col-auto">
             <select name="PageSize" class="form-select">
-                <option @if (((int)ViewBag.PageSize).ToString() == "5") { @Html.Raw("selected") ; } value="5">5</option>
+                <option @if (((int)ViewBag.PageSize).ToString() == "5") { @Html.Raw("selected")  ; } value="5">5</option>
                 <option @if (((int)ViewBag.PageSize).ToString() == "10") { @Html.Raw("selected") ; } value="10">10</option>
                 <option @if (((int)ViewBag.PageSize).ToString() == "15") { @Html.Raw("selected") ; } value="15">15</option>
                 <option @if (((int)ViewBag.PageSize).ToString() == "20") { @Html.Raw("selected") ; } value="20">20</option>
@@ -32,13 +32,13 @@
 
 }
 
-<table class="table table-bordered table-hover w-75 mt-3">
+<table class="border-0 table table-bordered table-hover table-dark w-75 mt-3">
     <tr>
         <th class="w-50">
-           @Html.DisplayNameFor(model => model[0].NombrePais)
+            @Html.DisplayNameFor(model => model[0].NombrePais)
         </th>
         <th class="w-25">
-           @Html.DisplayNameFor(model => model[0].CantidadCiudades)
+            @Html.DisplayNameFor(model => model[0].CantidadCiudades)
         </th>
 
         <th class="w-25">

@@ -21,13 +21,19 @@ namespace TiendaVirtual.Web
 
             bundles.Add(new Bundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
-                      "~/Scripts/bootstrap.bundle.js"
+                      "~/Scripts/bootstrap.bundle.js",
+                      "~/Scripts/fontawesome/all.min.js",
+                      "~/Scripts/toastr.js",
+                      "~/Scripts/tiendaVirtual.js"
                       ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
-                      "~/Content/PagedList.css"));
+                      "~/Content/PagedList.css",
+                      "~/Content/all.min.css",
+                      "~/Content/toastr.css"
+                      ));
         }
     }
 }
