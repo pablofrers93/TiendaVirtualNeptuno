@@ -10,6 +10,6 @@ namespace TiendaVirtual.Utilidades
     {
         public const string ProductosImagenesFolder = "~/Content/Imagenes/Productos/";
         public const string SinImagenDisponible = "~/Content/Imagenes/SinImagenDisponible.jpg";
-        public const string LogoDeNeptuno = "~/Content/Imagenes/NeptunoLogo.jpeg";
+        public const string LogoDeNeptuno = "~/Content/Imagenes/tienda_virtual.jpg";
     }
 }

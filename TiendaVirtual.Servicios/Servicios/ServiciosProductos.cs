@@ -79,6 +79,19 @@ namespace Neptuno2022EF.Servicios.Servicios
             throw new NotImplementedException();
         }
 
+        public int GetCantidad()
+        {
+            try
+            {
+                return _repositorio.GetCantidad();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
         public Producto GetProductoPorId(int id)
         {
             try

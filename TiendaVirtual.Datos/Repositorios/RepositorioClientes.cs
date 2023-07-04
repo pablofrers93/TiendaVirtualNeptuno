@@ -106,6 +106,11 @@ namespace TiendaVirtual.Datos.Repositorios
                 }).ToList();
         }
 
+        public int GetCantidad()
+        {
+            return _context.Clientes.Count();
+        }
+
         public Cliente GetClientePorId(int id)
         {
             try

@@ -16,5 +16,6 @@ namespace TiendaVirtual.Datos.Interfaces
         List<ClienteListDto> GetClientes();
         List<ClienteListDto> GetClientes(int paisId, int ciudadId);
         List<ClienteListDto> Filtrar(Func<Cliente, bool> predicado);
+        int GetCantidad();
     }
 }

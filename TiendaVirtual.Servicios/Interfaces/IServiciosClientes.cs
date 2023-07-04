@@ -19,5 +19,6 @@ namespace TiendaVirtual.Servicios.Interfaces
         List<ClienteListDto> GetClientes(int paisId, int ciudadId);
         void Guardar(Cliente cliente);
         List<ClienteListDto> Filtrar(Func<Cliente, bool> predicado);
+        int GetCantidad();
     }
 }

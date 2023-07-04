@@ -129,5 +129,9 @@ namespace TiendaVirtual.Datos.Repositorios
 
         }
 
+        public int GetCantidad()
+        {
+            return _context.Productos.Count();
+        }
     }
 }
